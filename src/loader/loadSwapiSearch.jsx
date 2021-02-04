@@ -1,25 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Home from '../pages/home';
+import SwapiResults from '../pages/swapiResults';
 import Loader from './loader';
 import axios from 'axios';
 
-const LoaderWrap = styled.div`
-    width: 100%;
-    height: 92vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const LoadHome = () => {
+const LoadSwapiSearch = (props) => {
     const [data, setData] = useState({ fetched: null, isFetching: false });
 
     useEffect(() => {
+        console.log(props.url);
         const fetchData = async () => {
             try{
                 setData({ fetched: data, isFetching: true});
-                const response = await axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=54.033329&lon=10.45&&units=metric&appid=c1cc4c6011bcbe3a3d85d455b033df71");
+                const response = await axios.get(props.url);
                 setData({ fetched: response.data, isFetching: false});
             } catch(e) {
                 console.log(e);
@@ -27,15 +19,13 @@ const LoadHome = () => {
             }
         }
         fetchData();
-    }, []);
+    }, [props.url]);
     
     return data.fetched && !data.isFetching ? (
-        <Home data={data.fetched} />
+        <SwapiResults data={data.fetched} />
     ) : (
-        <LoaderWrap>
-            <Loader />
-        </LoaderWrap>
+        <Loader />
     )
 }
 
-export default LoadHome;
+export default LoadSwapiSearch;
