@@ -13,4 +13,5 @@ pip-selfcheck.json
 
 # hide credentials
 credentials.json
-client_secret_638694165912-b69ia2di3so6t7bqhklk3m0610edjcbv.apps.googleusercontent.com.json
+desktop_client_secrets.json
+web_client_secrets.json
