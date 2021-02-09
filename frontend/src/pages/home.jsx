@@ -6,6 +6,7 @@ import WbSunnyRoundedIcon from '@material-ui/icons/WbSunnyRounded';
 import NightsStayRoundedIcon from '@material-ui/icons/NightsStayRounded';
 import InvertColorsRoundedIcon from '@material-ui/icons/InvertColorsRounded';
 import GoogleLogin from 'react-google-login';
+import axios from 'axios';
 
 import LoadSwapiSearch from '../loader/loadSwapiSearch';
 
@@ -84,7 +85,62 @@ const Home = (props) => {
 
     const responseGoogle = (response) => {
         console.log(response);
-      }
+    }
+
+
+    const getEvents = async () => {
+        const response = await fetch("http://localhost:8000/event")
+        const events = await response.json()
+        console.log(events);
+    }
+
+    const createEvent = () => {
+
+        var data = {
+            summary: 'Migrane Test 001',
+            location: 'Pankower Allee 90, 13409 Berlin',
+            description: 'Just a test event, want to see if it works!',
+            start: {
+                dateTime: '2021-02-09T15:00:00+01:00',
+                timeZone: 'Europe/Berlin',
+            },
+            end: {
+                dateTime: '2021-02-09T17:00:00+01:00',
+                timeZone: 'Europe/Berlin',
+            },
+            colorId: 3
+        }
+
+        axios({
+            url: 'http://localhost:8000/calendar',
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT'
+            },
+            data: JSON.stringify(data)
+        }).then(response => {
+            (response.status === 200) ? (
+                console.log(response)
+            ) : (
+                alert('Oh-oh! Something went wrong!')
+            )
+        }, error => {
+            console.log(error);
+        })
+    }
+
+    const getGoogleEvents = () => {
+        axios.get('http://localhost:8000/calendar')
+            .then(response => {
+                console.log(response);
+            }, error => {
+                console.log(error);
+            });
+        
+            console.log("completed!");
+    }
 
     /*
     const [swapiData, setSwapiData] = useState(props.data);
@@ -127,13 +183,21 @@ const Home = (props) => {
                     })}
                 </div>
 
-                <GoogleLogin
+                {/*<GoogleLogin
                     clientId='638694165912-0qd5tl1kb4evd0e2447647a7edrdetcp.apps.googleusercontent.com'
                     buttonText='Login'
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
-                />
+                />*/}
+
+                <Button variant="contained" color="primary" onClick={() => createEvent()}>
+                    Create a Google Event!
+                </Button>
+                <br />
+                <Button variant="contained" color="primary" onClick={() => getGoogleEvents()}>
+                    Get Google Events!
+                </Button>
             </div>
         </HomeContainer>
     )

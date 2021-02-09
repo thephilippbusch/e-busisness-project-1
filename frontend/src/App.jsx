@@ -2,15 +2,14 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from './pages/navbar';
 import OpenWeatherAPI from './pages/openweather';
 import LoadHome from './loader/loadHome';
 import GoogleCalendarAPI from './pages/googlecalendar';
-import Home from './pages/home';
+// import Home from './pages/home';
 
 const MainDiv = styled.div`
   width: 100%;

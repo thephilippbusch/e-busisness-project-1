@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const OpenWeatherContainer = styled.div`
+const GoogleCalendarContainer = styled.div`
     width: 100%;
     height: 90vh;
     display: flex;
@@ -19,13 +19,13 @@ const OpenWeatherContainer = styled.div`
     } 
 `;
 
-const OpenWeatherAPI = () => {
+const GoogleCalendarAPI = () => {
 
     return(
-        <OpenWeatherContainer>
-            <a href="https://home.openweathermap.org/" target="_blank">Open Weather Map API</a>
-        </OpenWeatherContainer>
+        <GoogleCalendarContainer>
+            <a href="https://developers.google.com/calendar" target="_blank" rel="noreferrer">Google Calendar API</a>
+        </GoogleCalendarContainer>
     )
 }
 
-export default OpenWeatherAPI;
+export default GoogleCalendarAPI;
