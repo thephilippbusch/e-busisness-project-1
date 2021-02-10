@@ -6,10 +6,11 @@ import axios from 'axios';
 
 const LoaderWrap = styled.div`
     width: 100%;
-    height: 92vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: scroll;
 `;
 
 const LoadHome = () => {
@@ -19,7 +20,7 @@ const LoadHome = () => {
         const fetchData = async () => {
             try{
                 setData({ fetched: data, isFetching: true});
-                const response = await axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=54.033329&lon=10.45&&units=metric&appid=c1cc4c6011bcbe3a3d85d455b033df71");
+                const response = await axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=54.033329&lon=10.45&units=metric&exclude=minutely,alerts&appid=2f8cac0211e53f53ef728179a1595bb9");
                 setData({ fetched: response.data, isFetching: false});
             } catch(e) {
                 console.log(e);

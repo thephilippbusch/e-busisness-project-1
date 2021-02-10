@@ -17,13 +17,20 @@ const MainDiv = styled.div`
   background-color: dark-grey;
 `;
 
+const ContentDiv = styled.div`
+  width: 100%;
+  height: 90vh;
+  overflow: scroll;
+`;
+
 function App() {
   return (
     <Router>
       <MainDiv>
         <NavBar />
       
-        <Switch>
+        <ContentDiv>
+          <Switch>
             <Route exact path="/">
               <LoadHome />
             </Route>
@@ -34,7 +41,8 @@ function App() {
               <GoogleCalendarAPI />
             </Route>
           </Switch>
-        </MainDiv>
+        </ContentDiv>
+      </MainDiv>
     </Router>
   );
 }

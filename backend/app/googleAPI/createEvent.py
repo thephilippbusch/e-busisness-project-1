@@ -10,7 +10,7 @@ def createEvent(event):
 
     service = Create_Service(CLIENT_SECRET_FILE, API_NAME, API_VERSION, SCOPES)
 
-    result = service.events().insert(calendarId="primary", body=event).execute()
+    result = service.events().insert(calendarId="primary", sendUpdates="all", body=event).execute()
 
     if result:
         return 'Event created: %s' % (event.get('htmlLink'))

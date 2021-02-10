@@ -15,3 +15,6 @@ pip-selfcheck.json
 credentials.json
 desktop_client_secrets.json
 web_client_secrets.json
+
+token_calendar_v3.pickle
+token.pickle

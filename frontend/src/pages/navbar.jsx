@@ -58,7 +58,7 @@ const NavBar = () => {
     return(
         <NavBarContainer>
             <TitleLogo>
-                <h1>MIGRANE</h1>
+                <h1>AspirinMinder</h1>
             </TitleLogo>
             <LinkContainer>
                 <ul>
