@@ -8,22 +8,37 @@ const GoogleCalendarContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    a {
-        text-decoration: none;
-        color: black;
-        font-size: 15px;
-        font-family: helvetica, Verdana;
+    .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        width:200px;
+        justify-content: center;
+
+        a {
+            margin-top: 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 15px;
+            font-family: helvetica, Verdana;
+        }
+        a:hover {
+            color: rgb(100, 100, 100);
+        } 
+    
+        .logo {
+            width: 200px;
+        }
     }
-    a:hover {
-        color: rgb(100, 100, 100);
-    } 
 `;
 
 const GoogleCalendarAPI = () => {
 
     return(
         <GoogleCalendarContainer>
-            <a href="https://developers.google.com/calendar" target="_blank" rel="noreferrer">Google Calendar API</a>
+            <div className="wrapper">
+                <a href="https://developers.google.com/calendar" target="_blank" rel="noreferrer"><img src="google_calendar.png" alt="Google Calendar Logo" className="logo"></img></a>
+                <a href="https://developers.google.com/calendar" target="_blank" rel="noreferrer">Google Calendar API</a>
+            </div>
         </GoogleCalendarContainer>
     )
 }

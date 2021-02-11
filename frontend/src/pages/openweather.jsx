@@ -8,22 +8,37 @@ const OpenWeatherContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    a {
-        text-decoration: none;
-        color: black;
-        font-size: 15px;
-        font-family: helvetica, Verdana;
+    .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        width:200px;
+        justify-content: center;
+
+        a {
+            margin-top: 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 15px;
+            font-family: helvetica, Verdana;
+        }
+        a:hover {
+            color: rgb(100, 100, 100);
+        } 
+    
+        .logo {
+            width: 200px;
+        }
     }
-    a:hover {
-        color: rgb(100, 100, 100);
-    } 
 `;
 
 const OpenWeatherAPI = () => {
 
     return(
         <OpenWeatherContainer>
-            <a href="https://home.openweathermap.org/" target="_blank" rel="noreferrer">Open Weather Map API</a>
+            <div className="wrapper">
+                <a href="https://home.openweathermap.org/" target="_blank" rel="noreferrer"><img src="openweathermap.png" alt="OpenWeatherMap Logo" className="logo"></img></a>
+                <a href="https://home.openweathermap.org/" target="_blank" rel="noreferrer">Open Weather Map API</a>
+            </div>
         </OpenWeatherContainer>
     )
 }

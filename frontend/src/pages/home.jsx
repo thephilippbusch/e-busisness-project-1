@@ -15,6 +15,7 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import EventIcon from '@material-ui/icons/Event';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import DoneIcon from '@material-ui/icons/Done';
 
 import WbSunnyRoundedIcon from '@material-ui/icons/WbSunnyRounded';
 import NightsStayRoundedIcon from '@material-ui/icons/NightsStayRounded';
@@ -49,6 +50,10 @@ const HomeContainer = styled.div`
                 display: flex;
                 justify-content: space-between;
             }
+        }
+
+        .disclaimer {
+            color: grey;
         }
 
         .dailyList {
@@ -99,8 +104,10 @@ const MigraneView = styled.div`
         width: 25%;
     }
 
-    .calendarButton {
+    .calendarDiv {
         margin-left: 5%;
+        width: 50px;
+        justify-content: center;
     }
 
     .migraneViewDiv {
@@ -117,25 +124,25 @@ const DrawerDiv = styled.div`
 const MONTHS = [
     "Jan",
     "Feb",
-    "Mar",
+    "Mär",
     "Apr",
-    "May",
+    "Mai",
     "Jun",
     "Jul",
     "Aug",
     "Sep",
     "Okt",
     "Nov",
-    "Dec"
+    "Dez"
 ];
 const DAYS = [
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat",
-    "Sun"
+    "So",
+    "Mo",
+    "Di",
+    "Mi",
+    "Do",
+    "Fr",
+    "Sa"
 ];
 
 const Home = (props) => {
@@ -398,6 +405,7 @@ const Home = (props) => {
                                     </ListItem>
                                 )
                             })}
+                            <p className="disclaimer">provided by <a href="https://home.openweathermap.org/" target="_blank" rel="noreferrer">OpenWeatherMap.org</a></p>
                         </List>
                     </AccordionDetails>
                 </Accordion>
@@ -420,6 +428,7 @@ const Home = (props) => {
                                     </ListItem>
                                 )
                             })}
+                            <p className="disclaimer">provided by <a href="https://home.openweathermap.org/" target="_blank" rel="noreferrer">OpenWeatherMap.org</a></p>
                         </List>
                     </AccordionDetails>
                 </Accordion>
@@ -520,6 +529,7 @@ const Home = (props) => {
 const MigraneWarning = (props) => {
     const [btnDisabled, setBtnDisabled] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     const convertToDate = (dt) => {
         var d = new Date(dt * 1000);
@@ -531,6 +541,7 @@ const MigraneWarning = (props) => {
     }
 
     useEffect(() => {
+        setSuccess(false);
         setBtnDisabled(false);
     }, [props.danger])
 
@@ -573,10 +584,11 @@ const MigraneWarning = (props) => {
             data: JSON.stringify(event)
         }).then(response => {
             (response.status === 200) ? (
-                console.log(response)
+                setSuccess(true)
             ) : (
                 alert('Oh-oh! Something went wrong!')
             )
+            console.log(response);
             setLoading(false);
         }, error => {
             console.log(error);
@@ -618,11 +630,19 @@ const MigraneWarning = (props) => {
                     </AccordionDetails>
                 </Accordion>
             </div>
-            {loading ? (
-                <CircularProgress />
-            ) : (
-                <Button className="calendarButton" disabled={btnDisabled} onClick={() => handleEventCreation()}><EventIcon /></Button>
-            )}
+            <div className="calendarDiv">
+                {loading ? (
+                    <CircularProgress />
+                ) : (
+                    <div>
+                        {success ? (
+                            <Button disabled={true}><DoneIcon /></Button>
+                        ) : (
+                            <Button  disabled={btnDisabled} onClick={() => handleEventCreation()}><EventIcon /></Button>
+                        )}
+                    </div>
+                )}
+            </div>
         </MigraneView>
     )
 }

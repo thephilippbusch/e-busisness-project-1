@@ -7,24 +7,27 @@ const NavBarContainer = styled.div`
     height: 10vh;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    background-color: rgb(0, 0, 80);
+    justify-content: space-between;
+    background-color: rgb(137, 169, 160);
 `;
 const TitleLogo = styled.div`
     width: 50%;
     display: flex;
     
 
-    h1 {
-        margin-left: 70px;
+    .titleLink {
+        margin-left: 50px;
         letter-spacing: 0.8em;
         font-family: helvetica, Verdana;
         font-size: 20px;
-        color: rgb(180, 180, 180)
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
     }
 `;
 const LinkContainer = styled.div`
-    width: 50%;
+    width: 30%;
+    min-width: 500px;
     display: flex;
 
     ul {
@@ -37,11 +40,11 @@ const LinkContainer = styled.div`
         padding: 0;
 
         li {
-
+            margin: 0px 10px 0px 10px;
 
             a {
                 text-decoration: none;
-                color: rgb(180, 180, 180);
+                color: white;
                 font-size: 15px;
                 font-family: helvetica, Verdana;
             }
@@ -58,7 +61,7 @@ const NavBar = () => {
     return(
         <NavBarContainer>
             <TitleLogo>
-                <h1>AspirinMinder</h1>
+            <Link className="titleLink" to="/">AspirinMinder</Link>
             </TitleLogo>
             <LinkContainer>
                 <ul>

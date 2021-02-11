@@ -13,14 +13,14 @@ const LoaderWrap = styled.div`
     overflow: scroll;
 `;
 
-const LoadHome = () => {
+const LoadHome = (props) => {
     const [data, setData] = useState({ fetched: null, isFetching: false });
 
     useEffect(() => {
         const fetchData = async () => {
             try{
                 setData({ fetched: data, isFetching: true});
-                const response = await axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=54.033329&lon=10.45&units=metric&exclude=minutely,alerts&appid=2f8cac0211e53f53ef728179a1595bb9");
+                const response = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${props.lat}&lon=${props.lon}&units=metric&exclude=minutely,alerts&appid=2f8cac0211e53f53ef728179a1595bb9`);
                 setData({ fetched: response.data, isFetching: false});
             } catch(e) {
                 console.log(e);

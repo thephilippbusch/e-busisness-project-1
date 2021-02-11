@@ -9,6 +9,7 @@ import NavBar from './pages/navbar';
 import OpenWeatherAPI from './pages/openweather';
 import LoadHome from './loader/loadHome';
 import GoogleCalendarAPI from './pages/googlecalendar';
+import PreLoad from './loader/preLoad';
 // import Home from './pages/home';
 
 const MainDiv = styled.div`
@@ -24,6 +25,7 @@ const ContentDiv = styled.div`
 `;
 
 function App() {
+
   return (
     <Router>
       <MainDiv>
@@ -32,7 +34,7 @@ function App() {
         <ContentDiv>
           <Switch>
             <Route exact path="/">
-              <LoadHome />
+              <PreLoad />
             </Route>
             <Route path="/openweatherapi">
               <OpenWeatherAPI />
